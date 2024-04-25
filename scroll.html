@@ -4,350 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-    <style>
-    a{
-      text-decoration: none;
-      color: white;
-      transition: color 0.5s;
-    }
-
-    a:hover{
-      color: aquamarine;
-    }
-    .project-scroll{
-      color: white;
-      transition: all 0.5s;
-      border: 2px white solid;
-    }
-
-    .project-scroll:hover{
-      background-color: white;
-      color: aqua;
-    }
-    .links{
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-    body{
-      background-size: 100% 100%;
-      background-color: #000;
-      color: white;
-      font-size: 140%;
-      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
-      .fixed-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 2;
-      width: 100%;
-      background: rgb(0, 0, 0);
-      color: black;
-      box-shadow: grey;
-    }
-    .card{
-        width: 90%;
-        height: 100%;
-        border: 2px white solid;
-        visibility: hidden;
-        border-radius: 10px;
-        margin-bottom: 100px;
-        margin-left: 40%;
-        filter: blur(5px);
-        padding: 20px;
-        transition: filter 1s,transform 1s;
-      }
-
-      .cardshow{
-        transform: translateX(-39%);
-        visibility: visible;
-        filter: blur(0px);
-      } 
-    .link-container{
-      background-color: rgb(255, 246, 246);
-      color: #000;
-      height: 0px;
-      overflow: hidden;
-      transition: all 0.5s;
-      z-index: 2;
-    }
-    .link-container a{
-      color: #000;
-    }
-    .logo{
-      height: 50px;
-      width: 50px;
-      border-radius: 25px;
-    }
-    .banner{
-     display: flex;
-     justify-content: center;
-     align-items: center;
-      border: 2px white solid;
-      min-width: 100vh;
-      height: 100vh;
-      overflow-x: auto;
-      /* background-image: url('photos/bg1.jpg');
-      background-repeat: no-repeat; */
-      overflow-y: auto;
-      transform-style: preserve-3d;
-      perspective: 10px;
-    }
-
-    .bg{
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
-      transform: translateZ(-10px) scale(2);
-    }
-
-    .profile{
-      position: absolute;
-      z-index: -1;
-      left: 5px;
-      bottom: 50px;
-      height: 500px;
-      width: 500px;
-      border-radius: 250px;
-      padding: 0px;
-      background-color: white;
-      
-     
-    }
-    .profile>img{
-      position: absolute;
-      height: 500px;
-      width: 500px;
-      bottom: 0px;
-      border-radius: 250px;
-      animation: x-dir 1s linear 0s 1 forwards ;  
-    }
-
-   
-    @keyframes x-dir{
-      0%{
-        transform: translate(-400px);
-      }
-      100%{
-        transform: translateX(-250px);
-      }
-    }
-    .container{
-      position: relative;
-      height: 100%;
-      transform-style: preserve-3d;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      
-    }
-
-    .nav-center{
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .menu{
-      background-color: white;
-      border: none;
-      height: 30px;
-      border: 2px white solid;
-      margin-right: 10px;
-      transition: background-color 0.5s;
-      visibility: hidden;
-    }
-
-    .menu:hover{
-      background-color: black;
-    }
-    .section{
-      background-color: rgb(255, 255, 255);
-      color: rgb(0, 0, 0);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    .nav-full{
-      margin-left: 100px;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      visibility: visible;
-      gap: 90px;
-      translate: 300px;
-    }
-    .nav-full a{
-      font-size: 130%;
-      color: rgba(255, 255, 255, 0.619);
-      transition: all 0.5s;
-    }
-
-    .nav-full a:hover{
-      color: aquamarine;
-      transform: scale(1.1);
-      margin: 5px 5px;
-    }
-    .top-link {
-      font-size: 1.25rem;
-      position: fixed;
-      bottom: 3rem;
-      right: 3rem;
-      background: rgb(255, 255, 255);
-      width: 2rem;
-      height: 2rem;
-      display: grid;
-      place-items: center;
-      border-radius: 5px;
-      color: white;
-      animation : bounce 2s ease-in-out infinite;
-      visibility: hidden;
-      z-index: -100;
-    }
-    .show-link {
-      visibility: visible;
-      z-index: 100;
-    }
-
-    .skill{
-      border: 3px white solid;
-      margin-left: 80%;
-      overflow-x: visible;
-    }
-
-    .project{
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-     margin-bottom: 100px;
-      gap: 40px;
-    }
-
-    .proj{
-      border: 2px white solid;
-      height: 100px;
-      width: 100px;
-      margin-top: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 15px;
-      padding: 3px;
-      transition: all 0.8s;
-      visibility: hidden;
-      filter:blur(5px) ;
-      transform: translateY(100px);
-    }
-
-    .proj:hover{
-      transform: scale(1.2);
-      margin: 0px 20px;
-    }
-
-    .visi{
-      visibility: visible;
-      filter: blur(0px);
-      transform: translateY(-20px);
-    }
-
-    @media only screen and (max-width:1000px) {
-        .menu{
-          visibility: visible;
-
-        }
-        .banner{
-          margin-left:100px ;
-        }
-        .nav-full{
-          visibility: hidden;
-        }
-    }
-
-    @keyframes bounce {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.5);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    .container-pro {
-      padding: none;
-  width: 350px;
-  height: 500px;
-  perspective: 800px;
-}
-
-.container-pro:hover > .card-pro {
-  cursor: pointer;
-  transform: rotateY(180deg);
-}
-
-.card-pro {
-  height: 100%;
-  width: 100%;
-  position: relative;
-  transition: transform 1500ms;
-  transform-style: preserve-3d;
-}
-.row,.column{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.row{
-  flex-direction: row;
-}
-.column{
-  flex-direction: column;
-}
-.img-pro{
-  height: 100%;
-  width: 100%;
-  border-radius: 5px;
-}
-.front,
-.back {
-  height: 100%;
-  width: 100%;
-  border-radius: 2rem;
-  box-shadow: 0 0 5px 2px rgba(50, 50, 50, 0.25);
-  position: absolute;
-  backface-visibility: hidden;
-}
-
-.back {
-  background-color: #161515;
-  transform: rotateY(180deg);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5rem;
-}
-
-.skills-icon{
-  background-color: transparent;
-  height: 300px;
-  width: 300px;
-  z-index: -1;
-}
-  </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body >
   
@@ -576,16 +233,44 @@
   <button class="top-link"><img src="photos/arrow_upward_FILL0_wght400_GRAD0_opsz24.png" ></button>
   
   <footer class="section">
-    <h2>Contact Me</h2> 
-    <p>Email: aarsh.dhamsania@gmail.com</p>
-    <p>Phone Number: +91 9106435150</p>
-    <span id="date"></span>
+    <div class="row">
+      <div class="container-contact">
+        <h2>Contact Us</h2>
+        <form id="contactForm" onsubmit="return validateForm()">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <span id="nameError" class="error"></span>
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <span id="emailError" class="error"></span>
+          </div>
+          <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <span id="messageError" class="error"></span>
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+      <div class="column" style="margin-left: 200px;">
+        <p>Phone no.:+91 1234567890</p>
+      <p>email ID: aarsh.dhamsania@gmail.com</p>
+      </div>
+      
+
+    </div>
+
+    
+    
   </footer>
 
   <script>
 
-    const date=document.getElementById("date");
-    date.innerHTML=new Date().getFullYear();
+    // const date=document.getElementById("date");
+    // date.innerHTML=new Date().getFullYear();
     const links=document.querySelector('.links');
     const container=document.querySelector('.link-container');
     const menu=document.querySelector('.menu');
