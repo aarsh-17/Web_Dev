@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+    <style>
+    a{
+      text-decoration: none;
+      color: white;
+      transition: color 0.5s;
+    }
+
+    a:hover{
+      color: aquamarine;
+    }
+    .project-scroll{
+      color: white;
+      transition: all 0.5s;
+      border: 2px white solid;
+    }
+
+    .project-scroll:hover{
+      background-color: white;
+      color: aqua;
+    }
+    .links{
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    body{
+      background-size: 100% 100%;
+      background-color: #000;
+      color: white;
+      font-size: 140%;
+      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+      .fixed-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      width: 100%;
+      background: rgb(0, 0, 0);
+      color: black;
+      box-shadow: grey;
+    }
+    .card{
+        width: 90%;
+        height: 100%;
+        border: 2px white solid;
+        visibility: hidden;
+        border-radius: 10px;
+        margin-bottom: 100px;
+        margin-left: 40%;
+        filter: blur(5px);
+        padding: 20px;
+        transition: filter 1s,transform 1s;
+      }
+
+      .cardshow{
+        transform: translateX(-39%);
+        visibility: visible;
+        filter: blur(0px);
+      } 
+    .link-container{
+      background-color: rgb(255, 246, 246);
+      color: #000;
+      height: 0px;
+      overflow: hidden;
+      transition: all 0.5s;
+      z-index: 2;
+    }
+    .link-container a{
+      color: #000;
+    }
+    .logo{
+      height: 50px;
+      width: 50px;
+      border-radius: 25px;
+    }
+    .banner{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+      border: 2px white solid;
+      min-width: 100vh;
+      height: 100vh;
+      overflow-x: auto;
+      /* background-image: url('photos/bg1.jpg');
+      background-repeat: no-repeat; */
+      overflow-y: auto;
+      transform-style: preserve-3d;
+      perspective: 10px;
+    }
+
+    .bg{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      transform: translateZ(-10px) scale(2);
+    }
+
+    .profile{
+      position: absolute;
+      z-index: -1;
+      left: 5px;
+      bottom: 50px;
+      height: 500px;
+      width: 500px;
+      border-radius: 250px;
+      padding: 0px;
+      background-color: white;
+      
+     
+    }
+    .profile>img{
+      position: absolute;
+      height: 500px;
+      width: 500px;
+      bottom: 0px;
+      border-radius: 250px;
+      animation: x-dir 1s linear 0s 1 forwards ;  
+    }
+
+   
+    @keyframes x-dir{
+      0%{
+        transform: translate(-400px);
+      }
+      100%{
+        transform: translateX(-250px);
+      }
+    }
+    .container{
+      position: relative;
+      height: 100%;
+      transform-style: preserve-3d;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      
+    }
+
+    .nav-center{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .menu{
+      background-color: white;
+      border: none;
+      height: 30px;
+      border: 2px white solid;
+      margin-right: 10px;
+      transition: background-color 0.5s;
+      visibility: hidden;
+    }
+
+    .menu:hover{
+      background-color: black;
+    }
+    .section{
+      background-color: rgb(255, 255, 255);
+      color: rgb(0, 0, 0);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .nav-full{
+      margin-left: 100px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      visibility: visible;
+      gap: 90px;
+      translate: 300px;
+    }
+    .nav-full a{
+      font-size: 130%;
+      color: rgba(255, 255, 255, 0.619);
+      transition: all 0.5s;
+    }
+
+    .nav-full a:hover{
+      color: aquamarine;
+      transform: scale(1.1);
+      margin: 5px 5px;
+    }
+    .top-link {
+      font-size: 1.25rem;
+      position: fixed;
+      bottom: 3rem;
+      right: 3rem;
+      background: rgb(255, 255, 255);
+      width: 2rem;
+      height: 2rem;
+      display: grid;
+      place-items: center;
+      border-radius: 5px;
+      color: white;
+      animation : bounce 2s ease-in-out infinite;
+      visibility: hidden;
+      z-index: -100;
+    }
+    .show-link {
+      visibility: visible;
+      z-index: 100;
+    }
+
+    .skill{
+      border: 3px white solid;
+      margin-left: 80%;
+      overflow-x: visible;
+    }
+
+    .project{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+     margin-bottom: 100px;
+      gap: 40px;
+    }
+
+    .proj{
+      border: 2px white solid;
+      height: 100px;
+      width: 100px;
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 15px;
+      padding: 3px;
+      transition: all 0.8s;
+      visibility: hidden;
+      filter:blur(5px) ;
+      transform: translateY(100px);
+    }
+
+    .proj:hover{
+      transform: scale(1.2);
+      margin: 0px 20px;
+    }
+
+    .visi{
+      visibility: visible;
+      filter: blur(0px);
+      transform: translateY(-20px);
+    }
+
+    @media only screen and (max-width:1000px) {
+        .menu{
+          visibility: visible;
+
+        }
+        .banner{
+          margin-left:100px ;
+        }
+        .nav-full{
+          visibility: hidden;
+        }
+    }
+
+    @keyframes bounce {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.5);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .container-pro {
+      padding: none;
+  width: 350px;
+  height: 500px;
+  perspective: 800px;
+}
+
+.container-pro:hover > .card-pro {
+  cursor: pointer;
+  transform: rotateY(180deg);
+}
+
+.card-pro {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  transition: transform 1500ms;
+  transform-style: preserve-3d;
+}
+.row,.column{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.row{
+  flex-direction: row;
+}
+.column{
+  flex-direction: column;
+}
+.img-pro{
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+}
+.front,
+.back {
+  height: 100%;
+  width: 100%;
+  border-radius: 2rem;
+  box-shadow: 0 0 5px 2px rgba(50, 50, 50, 0.25);
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.back {
+  background-color: #161515;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+}
+
+.skills-icon{
+  background-color: transparent;
+  height: 300px;
+  width: 300px;
+  z-index: -1;
+}
+  </style>
+</head>
+<body >
+  
+  <section id="home"></section>
+  <header id="home">
+    <nav id="nav">
+      <div class="nav-center">
+          <div class="nav-full">
+            <a href="#home" class="scroll-link">home</a>
+            <a href="#about" class="scroll-link">about</a>
+            <a href="#skills" class="scroll-link">skills</a>
+            <a href="#projects" class="scroll-link">projects</a>
+          </div>
+          <button class="menu">
+              <img src="photos/menu.png" alt="">
+          </button>
+      </div>
+      <div class="link-container">
+        <ul class="links">
+          <li>
+            <a href="#home" class="scroll-link">home</a>
+          </li>
+          <li>
+            <a href="#about" class="scroll-link">about</a>
+          </li>
+          <li>
+            <a href="#skills" class="scroll-link">skills</a>
+          </li>
+          <li>
+            <a href="#projects" class="scroll-link">projects</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="banner">
+      <img class="bg" src="photos/bg1.jpg" alt="">
+      <button class="profile"> 
+          <img class="rotate" src="photos/profile photo.jpeg" alt="">  
+      </button>
+      <div class="container">
+        <h1>Personal Profile</h1>
+        <p >Hii, I am Aarsh Dhamsania and this is my website. To view projects done by me, click the button below. </p>
+        <a href="#projects" class="project-scroll"> Projects</a>
+      </div>
+    </div>
+  </header>
+  <section id="about">
+    <div class="card">
+      
+      <h1>About <span style="color: aqua;">Me</span></h1>
+      My name is Aarsh Dhamsania, and I am from Rajkot, Gujarat, India. My mother is a professor of Computer Science with a Masters in Computer
+      science, and my father is a Investor in reeal estate. My passion is travelling and videography. I love listening to Music in my Freetime.
+      I have been coding since 9th Grade but at a beginner level. In college, I stared coding seriously and got quite good at it.
+    </div>
+  </section>
+  
+  <section id="skills">
+    <h1>My <span style="color: aqua;">Skills</span></h1>
+    <div class="skills"> 
+      <div class="card">
+        <div class="row">
+          <div class="column">
+            <img src="https://cdn-icons-png.flaticon.com/512/6132/6132222.png"  class="skills-icon" alt="">
+          </div>
+          <div class="column">
+            <h3>C++</h3>
+            <p><strong>Explanation:</strong> C++ is an extension of the C
+            language with added features like classes and objects, supporting both
+            procedural and object-oriented programming paradigms.</p>
+            <p><strong>Relevance:</strong> C++ is widely used in software
+            development for creating complex and scalable applications. Its versatility
+            makes it suitable for various domains.</p>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="card">
+        <div class="row">
+          <div class="column">
+            <img src="photos/python.svg"  class="skills-icon" alt="">
+          </div>
+       
+          <div class="column">
+            <h3>Python</h3>
+            <p><strong>Explanation:</strong> Python is a high-level,
+            interpreted language known for its readability and ease of use. It supports
+            multiple programming paradigms, including procedural, object-oriented, and
+            functional programming.</p>
+            <p><strong>Relevance:</strong> Python is used for web development,
+            data analysis, machine learning, and automation. Its simplicity and
+            versatility make it a valuable skill in various domains.</p>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+      <br>
+      <div class="card">
+        <div class="row">
+          <div class="column">
+            <img src="photos/css.jpg"  class="skills-icon" alt="">
+          </div>
+       
+          <div class="column">
+            <h3>CSS</h3>
+            <p><strong>Explanation:</strong> Cascading Style Sheets (CSS) is a
+            stylesheet language used for styling web pages written in HTML. It defines the
+            layout, design, and presentation of web documents.</p>
+            <p><strong>Relevance:</strong> CSS is crucial for creating
+            visually appealing and responsive web pages. It complements HTML and
+            JavaScript in front-end web development.</p>
+          </div>
+        </div>
+      
+      </div>
+      <br>
+      <div class="card">
+        <div class="row">
+          <div class="column">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/HTML5_Badge.svg/768px-HTML5_Badge.svg.png?20110131171049"  class="skills-icon" alt="">
+          </div>
+       
+          <div class="column">
+            <h3>HTML</h3>
+      <p><strong>Explanation:</strong> HyperText Markup Language (HTML)
+      is the standard markup language for creating web pages and web applications.
+      It structures content on the web.</p>
+      <p><strong>Relevance:</strong> HTML is the backbone of web
+      development, providing the structure and semantics for content. It works in
+      conjunction with CSS and JavaScript.</p>
+          </div>
+        </div>
+      
+      </div>
+      <br>
+      <div class="card">
+      <h3>DSA (Data Structures and Algorithms)</h3>
+      <p><strong>Explanation:</strong> Data Structures and Algorithms
+      involve the study of organizing and processing data efficiently. It includes
+      concepts like arrays, linked lists, sorting algorithms, and searching
+      algorithms.</p>
+      <p><strong>Relevance:</strong> DSA is fundamental for writing
+      efficient and scalable code. It is essential for problem-solving and
+      optimizing algorithms.</p>
+      </div>
+      <br>
+      <div class="card">
+        <div class="row">
+          <div class="column">
+            <img src=https://upload.wikimedia.org/wikipedia/commons/b/bb/Java-logo.png class="skills-icon" alt="">
+          </div>
+       
+          <div class="column">
+            <h3>Java</h3>
+      <p><strong>Explanation:</strong> Java is a versatile, objectoriented
+      programming language known for its portability and platform
+      independence. It is widely used in enterprise-level applications and Android
+      development.</p>
+      <p><strong>Relevance:</strong> Java is used for building scalable
+      and robust applications, making it suitable for a variety of domains, from web
+      development to mobile app development.</p>
+          </div>
+      
+  </div>
+  </section>
+  
+  <section id="projects">
+    <h1 style="margin-top: 500px;">My <span style="color: aqua;">Projects</span></h1>
+    <div class="project ">
+      <div class="proj container-pro">
+        <div class="card-pro">
+          <div class="front">
+            <img src="photos/weather-app.png" class="img-pro">
+          </div>
+          <div class="back">
+           <a href="Weather.html">Weather App</a> 
+          </div>
+        </div>
+        
+       
+      </div>
+      <div class="proj container-pro">
+        <div class="card-pro">
+          <div class="front">
+            <img src="photos/calc.png" class="img-pro">
+          </div>
+          <div class="back">
+           <a href="calculator.html">Calculator</a> 
+          </div>
+        </div>
+        
+        
+      </div>
+      <div class="proj container-pro">
+        <div class="card-pro">
+          <div class="front">
+            <img src="photos/to-do.png" class="img-pro">
+          </div>
+          <div class="back">
+            <a href="To-do-list.html">To-Do List</a>
+          </div>
+        </div>
+        
+        
+      </div>
+      <div class="proj container-pro">
+        <div class="card-pro">
+          <div class="front">
+            <img src="photos/rock-paper.png" class="img-pro">
+          </div>
+          <div class="back">
+            <a href="Rock paper scissors.html">Rock Paper scissors</a>
+          </div>
+        </div>
+        
+        
+      </div>
+
+    </div> 
+  </section>
+   
+
+  
+
+  <button class="top-link"><img src="photos/arrow_upward_FILL0_wght400_GRAD0_opsz24.png" ></button>
+  
+  <footer class="section">
+    <h2>Contact Me</h2> 
+    <p>Email: aarsh.dhamsania@gmail.com</p>
+    <p>Phone Number: +91 9106435150</p>
+    <span id="date"></span>
+  </footer>
+
+  <script>
+
+    const date=document.getElementById("date");
+    date.innerHTML=new Date().getFullYear();
+    const links=document.querySelector('.links');
+    const container=document.querySelector('.link-container');
+    const menu=document.querySelector('.menu');
+    menu.addEventListener("click",()=>{
+      let containerheight=container.getBoundingClientRect().height;
+      const linkheight=links.getBoundingClientRect().height+50;
+      console.log(containerheight);
+      let count=0;
+      if(containerheight===0){
+        setInterval(()=>{
+          while(count<linkheight)
+          {
+            count++;
+            container.style.height=`${count}px`;
+          }
+        }, 100);
+      }
+      else{
+        container.style.height=`0px`;
+      }
+    })
+    const nav=document.getElementById("nav");
+    const toplink=document.querySelector('.top-link');
+    window.addEventListener("scroll",()=>{
+      const scrollheight=Math.ceil(window.pageYOffset);
+      const navheight=nav.getBoundingClientRect().height;
+      if(scrollheight>navheight){
+       nav.classList.add("fixed-nav");
+      }
+      else{
+        nav.classList.remove("fixed-nav");
+      }
+
+      if(scrollheight>500){
+        toplink.classList.add('show-link');
+      }
+      else{
+        toplink.classList.remove('show-link')
+      }
+    })
+
+    toplink.addEventListener("click",()=>{
+      document.documentElement.scrollTop = 0;
+    })
+
+    //scroll animation
+    const cards=document.querySelectorAll(".card");
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        if(entry.target.classList.contains("card")){
+          entry.target.classList.add("cardshow");
+        }
+        if(entry.target.classList.contains("proj")){
+          //console.log("dlkjnad");
+          entry.target.classList.add("visi");
+        }
+      }
+      
+    })
+    console.log(entries);
+  },{
+    threshold:0.5,
+  })
+  
+  cards.forEach(card=>{
+    observer.observe(card)
+  })
+
+  const projects=document.querySelectorAll(".proj");
+  projects.forEach(pro=>{
+    observer.observe(pro)
+  })
+
+  //proj
+   
+  // const observer1=new IntersectionObserver(entries=>{
+  //   entries.forEach(entry=>{
+  //     if(entry.isIntersecting){
+        
+        
+  //      // observer.unobserve(target1);
+  //     }
+      
+  //   })
+  //   console.log(entries);
+  // },{
+  //   threshold:0.5,
+  // })
+  
+  
+  </script>
+</body>
+</html>

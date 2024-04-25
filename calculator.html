@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    body{
+      font-size: 150%;
+    }
+    .main {
+    margin: 300px 300px;
+    border: 2px black solid;
+   
+    min-width: 300px;
+    flex-wrap: wrap;
+    }
+    img{
+      position: relative;
+      right: 4px;
+      bottom: 1px;
+      width: 109%;
+      height: 102%;
+      border-radius: 50px;
+      
+    }
+    button {
+    height: 100px;
+    width: 100px;
+    margin: 1px;
+    border: 1px black solid;
+    border-radius: 50px;
+    }
+    .column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    }
+    .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    }
+    .print {
+    background-color: azure;
+    border: 2px black solid;
+    height: 30px;
+    margin: 0px;
+    }
+  </style>
+  <script>
+    let num = 0;
+    let num1=0;
+    let op=0;
+    function add(Number) {
+    const numb = document.querySelector(".print");
+    num = 10 * num + Number;
+    numb.innerHTML = num;
+    }
+
+    function oper(x){
+      num1=num;
+      num=0;
+      op=x;
+      document.querySelector('.print').innerHTML=0;
+    }
+
+    function clr(){
+            num=0;
+            document.querySelector('.print').innerHTML=num;
+      }
+
+    function equals(){
+      let operation=0;
+      if(op===0){
+        operation=num+num1;
+      }
+
+      if(op===1){
+        operation=num1-num;
+      }
+
+      if(op===2){
+        operation=num*num1;
+      }
+
+      if(op===3 && num!=0){
+        operation=num1/num;
+      }
+      else{
+        document.querySelector('.print').innerHTML="Divide by zero";
+      }
+      console.log(operation)
+      document.querySelector('.print').innerHTML=operation;
+    }
+  </script>
+  </head>
+  <body>
+    
+  <div class="main">
+
+    <h2>ED Sheeran's Calculator</h2>
+    <p class="print">OUTPUT</p>
+    
+    <div class="row">
+      <div class="column" style="">
+        <div class="row">
+          <button onclick="add(1)">1</button>
+          <button onclick="add(2)">2</button>
+          <button onclick="add(3)">3</button>
+        </div>
+        <div class="row">
+          <button onclick="add(4)">4</button>
+          <button onclick="add(5)">5</button>
+          <button onclick="add(6)">6</button>
+        </div>
+        <div class="row">
+          <button onclick="add(7)">7</button>
+          <button onclick="add(8)">8</button>
+          <button onclick="add(9)">9</button>
+        </div>
+        <div class="row">
+          <button onclick="clr()">clr</button>
+          <button onclick="add(0)">0</button>
+          <button onclick="equals()"><img src="photos\equals.jpg" alt=""></button>
+        </div>
+        
+      </div>
+      <div class="column" style="
+      margin-left: 10px;">
+        <button onclick="oper(0)"><img src="photos\plus.jpg" alt=""></button>
+        <button onclick="oper(1)"><img src="photos\subtract.jpg" alt=""></button>
+        <button onclick="oper(2)"><img src="photos\multiply.jpg" alt=""></button>
+        <button onclick="oper(3)"><img src="photos\divide.jpg" alt=""></button>
+      </div>
+    </div>
+    
+  </div>
+  </body>
+  </html>

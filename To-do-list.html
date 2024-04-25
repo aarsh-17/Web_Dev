@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-do-list</title>
+  <script>
+    let todolist=[];
+    
+    function type(){
+      document.querySelector(".js-input").style.borderWidth="5px";
+      document.querySelector(".js-input").style.borderColor="Blue";
+    }
+    
+    function listAdd(inputElement,ind){
+      let listElement='';
+      listElement+=`<p>
+        ${inputElement}
+        <button class="delete" onclick="
+        todolist.splice(${ind},1)
+        renderList()
+        ">
+          delete
+          </button>
+          </p>`;
+      return listElement;
+    }
+    
+    function renderList(){
+      let todohtml='';
+      if(todolist.length===0){
+        console.log(todolist.length);
+        document.querySelector('.js-print').innerHTML='No Pending task!!';
+      }
+      else{
+      for(let i=0;i<todolist.length;i++){
+        const element=todolist[i];
+        const html=listAdd(element,i);
+        todohtml+=html;
+      }
+      
+      document.querySelector('.js-print').innerHTML=todohtml;
+    }
+    }
+    
+    function add(){
+      let inputElement=document.querySelector('.js-input').value;
+      
+      todolist.push(inputElement);
+      document.querySelector('.js-input').value='';
+      renderList();
+    }
+
+  </script>
+  <style>
+    button{
+      background-color: transparent;
+      transition: transform  1s,box-shadow 1s ;
+      border-radius: 10px;
+      border-width: 0px;
+      box-shadow: 1px 1px 4px black  ;
+      transition: opacity 1s,transform 0.15s;
+      background-color: green;
+      color: azure;
+      font-weight: bold;
+    }
+
+    button:hover{
+      opacity: 0.7;
+    }
+    button:active{
+      transform: scale(0.95);
+      
+    }
+
+    .out{
+      font-size: 15px;
+      margin-top: 5px;
+      font-weight: bold;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    .delete{
+      margin-left: 60px;
+      background-color: red;
+    }
+    .view{
+      background-color: lightblue;
+      color: rgb(1, 24, 24);
+      border: 2px black solid;
+    }
+    body{
+      display: flex;
+      justify-content: center;
+      align-items: center; 
+    }
+    .main{
+      display: flex;
+      justify-content: center;
+      align-items: center; 
+      flex-direction: column;
+      border: 3px black solid;
+      padding: 100px;
+      margin-top: 100px;
+    }
+    
+  </style>
+</head>
+<body >
+  <div class="main">
+    <h1>To Do List</h1>
+    <div class="inp">
+      <input type="text" placeholder="To-do-list" class="js-input" onkeydown="
+    if(event.key==='Enter'){add();}">
+    <button  onclick="add()" >ADD</button><br>
+    </div>
+    
+    
+    <div class="js-print out">No pending tasks!!
+    </div>
+  </div>
+  
+</body>
+</html>

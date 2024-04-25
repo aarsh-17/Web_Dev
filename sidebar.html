@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    nav{
+      height: 100px;
+      padding: 0px 10px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      background-color: azure;
+      
+    }
+    nav a:first-child{
+      margin-right: auto;
+    }
+    .sidebar{
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: 200px;
+      background-color: transparent;
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+      align-items: flex-start;
+      justify-content: flex-start;
+    
+    }
+
+    .sidebar>a{
+      height: 50px;
+      width: 90%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .sidebar>button{
+      background-color: transparent;
+      border: 1px solid black;
+      border-radius: 5px;
+      margin-left: auto;
+    }
+    .sidebar>button:hover{
+      opacity: 0.8;
+    }
+    nav > a{
+      padding: 0px 30px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+    }
+    nav a:hover{
+      background-color: white;
+      
+    }
+  </style>
+
+  <script>
+    function open(){
+      document.querySelector('.sidebar').style.display='none';
+    }
+  </script>
+</head>
+<body>
+   
+  <nav>
+    <a href="#">logo</a>
+    <a href="#">Forum</a>
+    <a href="#">Help</a>
+    <a href="#">About</a>
+    <button onclick=open()><img src="photos/menu.png" alt=""></button>
+  </nav>
+      <nav class="sidebar">
+          <button onclick="open()"><img src="photos/close.png" alt=""></button>
+          <a href="#">logo</a>
+          <a href="#">Forum</a>
+          <a href="#">Help</a>
+          <a href="#">About the company </a>
+      </nav>
+
+      
+
+</body>
+</html>

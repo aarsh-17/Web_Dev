@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .Box{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-radius: 5px;
+      border-width: 2px;
+      border-style: solid;
+      border-color: black;
+      background-color: white;
+      margin: 200px 200px;
+    }
+
+    .buttons{
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns: 1fr 1fr 1fr;
+      margin: 5px 10px;
+      
+    }
+    button{
+      background-color: transparent;
+      transition: transform  1s,box-shadow 1s ;
+      box-shadow: 0px 0px px inset;
+      
+    }
+    button:hover{
+      transform: scale(1.1);
+      box-shadow: 1px 1px 1px inset;
+    }
+    img{
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      border-radius: 50px;
+    }
+    .head{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .Score{
+      display: grid;
+      align-items: right;
+      grid-template-rows: 50px 1fr;
+      background-color: antiquewhite;
+    }
+    h2{
+      background-color: aquamarine;
+      margin: 0px 0px;
+    }
+    p{
+      display: inline-block;
+    }
+    .reset{
+      display: flex;
+      justify-content: center;
+      
+    }
+  </style>
+
+  <script>
+    
+    let score=JSON.parse(localStorage.getItem('score')) || 
+    {
+      wins:0,
+      loss:0,
+      ties:0
+    }
+
+    /* same as 
+    if(score===null){
+      score={
+      wins:0,
+      loss:0,
+      ties:0
+      }
+    }
+    */
+    
+    function generate(playerMove){
+      let computerMove=Math.random();
+      if(playerMove==='rock'){
+        if(computerMove >=2/3 && computerMove< 1){
+          score.wins++;
+        }
+        else if(computerMove <2/3 && computerMove>1/3){
+          score.loss++;
+        }
+        else{
+          score.ties++
+        }
+    }
+
+    else if(playerMove==='paper'){
+      if(computerMove >=2/3 && computerMove< 1){
+        score.loss++;
+      }
+      else if(computerMove <2/3 && computerMove>1/3){
+        score.ties++;
+      }
+      else{
+        score.wins++
+      }
+    }
+    else if(playerMove==='scissor'){
+      if(computerMove >=2/3 && computerMove< 1){
+        score.ties++;
+      }
+      else if(computerMove <2/3 && computerMove>1/3){
+        score.wins++;
+      }
+      else{
+        score.loss++
+      }
+    }
+    else{}
+    if(computerMove >=2/3 && computerMove< 1){
+        computerMove='scissor';
+      }
+      else if(computerMove <2/3 && computerMove>1/3){
+        computerMove='paper';
+      }
+      else{
+        computerMove='rock';
+      }
+      localStorage.setItem('score',JSON.stringify(score));
+      document.getElementById("win").innerHTML=score.wins+"-";
+      document.getElementById("loss").innerHTML=score.loss+"-";
+      document.getElementById("tie").innerHTML=score.ties+"-";
+    alert('You choose '+playerMove+". Computer choose "+computerMove+"\nWins: "+score.wins+" Losses: "+ score.loss+" Ties: "+score.ties);
+    }
+
+    
+  </script>
+</head>
+<body >
+  <div class="Box">
+    <div class="head"> <h1 >This is the Rock-Paper-Scissor Game</h1>
+      <div class="Score">
+        <h2>Score</h2>
+        <div><p id="win">0-</p>
+          <p id="loss">0-</p>
+          <p id="tie">0</p></div>
+        
+      </div>
+    </div>
+   
+    <div class="buttons">
+      <button onclick="generate('rock')
+      "><img src="photos\rock.png" alt=""></button>
+      <button><img src="photos\paper.jpeg" onclick="generate('paper') "alt=""></button>
+      <button><img src="photos\scissors.png" onclick="generate('scissor')"></button>
+    </div>
+
+    <div class="reset">
+      <button onclick="
+        score.wins=0;
+        score.loss=0;
+        score.ties=0;
+        localStorage.removeItem('score');
+        " >Reset Score</button>
+    </div>
+  </div>
+</body>
+</html>
